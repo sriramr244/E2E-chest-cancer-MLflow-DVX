@@ -1,4 +1,4 @@
-tensorflow==2.12.0
+sentence-transformers
 pandas 
 gdown
 dvc
@@ -16,4 +16,5 @@ types-PyYAML
 scipy
 Flask
 Flask-Cors
+scikit-learn
 -e .
