@@ -6,3 +6,10 @@ data_ingestion:
   local_data_file: artifacts/data_ingestion/data.csv
 
 
+base_model:
+  root_dir: models
+  source_url: first_time
+  local_model_file: models/model.pkl
+  model_name: alminilmv6
+
+

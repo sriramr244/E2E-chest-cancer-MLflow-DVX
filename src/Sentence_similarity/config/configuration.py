@@ -1,6 +1,9 @@
 from Sentence_similarity.constants import *
 from Sentence_similarity.utils.common import read_yaml, create_directories
-from Sentence_similarity.entity.config_entity import DataIngestionConfig
+from Sentence_similarity.entity.config_entity import (
+    DataIngestionConfig,
+    BaseModelConfig,
+)
 
 
 class ConfigurationManager:
@@ -20,3 +23,14 @@ class ConfigurationManager:
             local_data_file=config.local_data_file,
         )
         return DI_config
+
+    def get_BaseModel_config(self) -> BaseModelConfig:
+        config = self.config.base_model
+        create_directories([config.root_dir])
+        BM_config = BaseModelConfig(
+            root_dir=config.root_dir,
+            source_url=config.source_url,
+            local_model_file=config.local_model_file,
+            model_name=config.model_name,
+        )
+        return BM_config

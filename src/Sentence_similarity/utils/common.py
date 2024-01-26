@@ -9,6 +9,7 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
+import pickle
 
 
 @ensure_annotations
@@ -132,3 +133,14 @@ def decodeImage(imgstring, fileName):
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())
+
+
+def write_pickle(file_name: Path, save_variable):
+    with open(file_name, "wb") as file:
+        pickle.dump(save_variable, file)
+
+
+def read_pickle(file_name: Path):
+    with open(file_name, "rb") as file:
+        out = pickle.load(file)
+    return out
