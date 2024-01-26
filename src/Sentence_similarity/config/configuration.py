@@ -3,6 +3,7 @@ from Sentence_similarity.utils.common import read_yaml, create_directories
 from Sentence_similarity.entity.config_entity import (
     DataIngestionConfig,
     BaseModelConfig,
+    TrainingConfig,
 )
 
 
@@ -34,3 +35,17 @@ class ConfigurationManager:
             model_name=config.model_name,
         )
         return BM_config
+
+    def get_Training_config(self) -> TrainingConfig:
+        config = self.config.training
+        print("//////////////////////|||||||||||||||||||", config.root_dir)
+        create_directories([config.root_dir])
+        Training_config = TrainingConfig(
+            base_model=Path(self.config.base_model.local_model_file),
+            updated_model_path=Path(config.updated_model_path),
+            params_batch_size=self.params.batch_size,
+            params_epochs=self.params.epochs,
+            params_warmup_steps=self.params.warmup_steps,
+            local_data_file=Path(self.config.data_ingestion.local_data_file),
+        )
+        return Training_config

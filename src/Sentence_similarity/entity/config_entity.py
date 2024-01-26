@@ -15,3 +15,13 @@ class BaseModelConfig:
     source_url: str
     local_model_file: Path
     root_dir: Path
+
+
+@dataclass(frozen=True)
+class TrainingConfig:
+    base_model: Path
+    updated_model_path: Path
+    params_epochs: int
+    params_batch_size: int
+    params_warmup_steps: int
+    local_data_file: Path

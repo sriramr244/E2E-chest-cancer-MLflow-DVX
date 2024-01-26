@@ -1,20 +1,22 @@
+from Sentence_similarity.components.training import TrainerLLM
 from Sentence_similarity.config.configuration import ConfigurationManager
-from Sentence_similarity.components.base_model import BaseModelPrep
 from Sentence_similarity import logger
 
-STAGE_NAME = "BASE MODEL PREPARATION STAGE"
+
+STAGE_NAME = "Training"
 
 
-class BaseModelPipeline:
+class TrainingPipeline:
     def __init__(self) -> None:
         pass
 
     def main(self):
         try:
             config = ConfigurationManager()
-            base_model_config = config.get_BaseModel_config()
-            Base_model_preparation = BaseModelPrep(config=base_model_config)
-            Base_model_preparation.download_model()
+            train_config = config.get_Training_config()
+            train_obj = TrainerLLM(config=train_config)
+            train_obj.train()
+            train_obj.save_trained_model()
         except Exception as e:
             raise e
 
@@ -22,7 +24,7 @@ class BaseModelPipeline:
 if __name__ == "__main__":
     try:
         logger.info(("+-" * 5) + f"{STAGE_NAME} Started" + ("-+" * 5))
-        obj = BaseModelPipeline()
+        obj = TrainingPipeline()
         obj.main()
         logger.info(("-" * 5) + f"{STAGE_NAME} Completed" + ("-" * 5))
 

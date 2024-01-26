@@ -7,9 +7,14 @@ data_ingestion:
 
 
 base_model:
-  root_dir: models
+  root_dir: artifacts/models
   source_url: first_time
-  local_model_file: models/model.pkl
+  local_model_file: artifacts/models/model.pkl
   model_name: alminilmv6
+
+training:
+  root_dir: artifacts/training
+  updated_model_path: artifacts/training/model_updated.pkl
+
 
 

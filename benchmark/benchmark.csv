@@ -1,0 +1,11 @@
+Sentence 1	Sentence 2	Similarity
+The package was delivered this morning	Package arrived today	0.9
+The package was delivered this morning	Package lost in transit	0.1
+Flight was cancelled due to bad weather	Flight postponed due to weather	0.8
+Flight was cancelled due to bad weather	Flight on schedule	0
+We are moving the deadline to next week	Deadline extended to next week	1
+We are moving the deadline to next week	Project cancelled	0.2
+Payment processed successfully	Payment completed	0.9
+Payment processed successfully	Payment failed	0.1
+The seminar will start at 3 PM tomorrow	Seminar begins at 3 PM tomorrow	1
+The seminar will start at 3 PM tomorrow	Seminar postponed indefinitely	0.2
