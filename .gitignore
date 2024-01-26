@@ -165,4 +165,5 @@ cancer/*
 
 logs/*
 
-models/*
+trained_models/*
+

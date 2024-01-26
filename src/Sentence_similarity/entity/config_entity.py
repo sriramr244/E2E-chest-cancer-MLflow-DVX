@@ -25,3 +25,11 @@ class TrainingConfig:
     params_batch_size: int
     params_warmup_steps: int
     local_data_file: Path
+
+
+@dataclass(frozen=True)
+class EvalConfig:
+    test_model_path: Path
+    naive_model_path: Path
+    benchmark_dataset_path: Path
+    mlflow_uri: str

@@ -2,7 +2,7 @@ sentence-transformers
 pandas 
 gdown
 dvc
-mlflow==2.2.2
+mlflow==2.10.0
 notebook
 numpy
 matplotlib

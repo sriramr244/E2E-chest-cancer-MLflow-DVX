@@ -17,4 +17,9 @@ training:
   updated_model_path: artifacts/training/model_updated.pkl
 
 
+evaluation:
+  benchmark_data: benchmark/benchmark.csv
+
+
+
 

@@ -4,6 +4,7 @@ from Sentence_similarity.entity.config_entity import (
     DataIngestionConfig,
     BaseModelConfig,
     TrainingConfig,
+    EvalConfig,
 )
 
 
@@ -38,7 +39,6 @@ class ConfigurationManager:
 
     def get_Training_config(self) -> TrainingConfig:
         config = self.config.training
-        print("//////////////////////|||||||||||||||||||", config.root_dir)
         create_directories([config.root_dir])
         Training_config = TrainingConfig(
             base_model=Path(self.config.base_model.local_model_file),
@@ -49,3 +49,11 @@ class ConfigurationManager:
             local_data_file=Path(self.config.data_ingestion.local_data_file),
         )
         return Training_config
+
+    def get_eval_config(self) -> EvalConfig:
+        return EvalConfig(
+            test_model_path=Path(self.config.training.updated_model_path),
+            naive_model_path=Path(self.config.base_model.local_model_file),
+            benchmark_dataset_path=Path(self.config.evaluation.benchmark_data),
+            mlflow_uri="https://dagshub.com/sriramr244/E2E-sentence-similarity-MLflow-DVX.mlflow",
+        )
