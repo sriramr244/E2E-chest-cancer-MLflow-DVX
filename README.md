@@ -1,1 +1,1 @@
-# E2E-chest-cancer-MLflow-DVX
+# E2E-Sentence-similarity-MLflow-DVX
