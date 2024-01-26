@@ -86,5 +86,4 @@ class ModelEval:
                 mlflow.sentence_transformers.log_model(
                     model=test_model,
                     artifact_path="trained_models",
-                    registered_model_name="CERCLING_KEYWORD",
                 )
