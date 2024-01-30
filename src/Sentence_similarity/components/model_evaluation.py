@@ -5,10 +5,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from sklearn.metrics import mean_squared_error
 from Sentence_similarity.constants import *
-from Sentence_similarity.utils.common import save_json
 import mlflow
 import mlflow.sentence_transformers
 from urllib.parse import urlparse
+from Sentence_similarity import logger
+from Sentence_similarity.utils.common import read_yaml
 
 
 class ModelEval:
@@ -66,6 +67,14 @@ class ModelEval:
         test_model = self.get_model(self.config.test_model_path)
 
         with mlflow.start_run():
+            params = read_yaml(PARAMS_FILE_PATH)
+            mlflow.log_params(
+                {
+                    "epochs": params.epochs,
+                    "batch_size": params.batch_size,
+                    "warmup_steps": params.warmup_steps,
+                }
+            )
             mlflow.log_metrics(
                 {
                     "rmse_before_training": self.evaluation_output["Base_model"][
@@ -78,12 +87,16 @@ class ModelEval:
                 }
             )
             if tracking_url_type_store != "file":
+                logger.info("Saving the model in dagshub")
                 mlflow.sentence_transformers.log_model(
                     model=test_model,
                     registered_model_name="CERCLING_KEYWORD",
+                    artifact_path="model",
                 )
             else:
+                logger.info("Saving the model locally")
                 mlflow.sentence_transformers.log_model(
                     model=test_model,
-                    artifact_path="trained_models",
+                    artifact_path="model",
                 )
+        mlflow.end_run()

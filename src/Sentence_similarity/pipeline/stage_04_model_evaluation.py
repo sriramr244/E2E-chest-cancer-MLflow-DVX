@@ -16,7 +16,7 @@ class EvaluationPipeline:
             eval_config = config.get_eval_config()
             evaluation = ModelEval(eval_config)
             evaluation.eval()
-            evaluation.save_score()
+            # evaluation.save_score()
             evaluation.log_into_mlflow()
 
         except Exception as e:

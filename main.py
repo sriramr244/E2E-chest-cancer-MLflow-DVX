@@ -2,10 +2,10 @@ from Sentence_similarity import logger
 from Sentence_similarity.pipeline.stage_01_data_ingestion import (
     DataIngestionTrainingPipeline,
 )
-from Sentence_similarity.pipeline.stage_02_base_model import BaseModelPipeline
-from Sentence_similarity.pipeline.stage_03_model_trainer import TrainingPipeline
 from Sentence_similarity.pipeline.stage_04_model_evaluation import EvaluationPipeline
+import os
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 STAGE_NAME = "DATA INGESTION STAGE"
 try:
@@ -18,6 +18,7 @@ except Exception as e:
     logger.exception(e)
     raise e
 
+from Sentence_similarity.pipeline.stage_02_base_model import BaseModelPipeline
 
 STAGE_NAME = "BASE MODEL PREPARATION STAGE"
 try:
@@ -30,6 +31,7 @@ except Exception as e:
     logger.exception(e)
     raise e
 
+from Sentence_similarity.pipeline.stage_03_model_trainer import TrainingPipeline
 
 STAGE_NAME = "TRAINING"
 
@@ -42,6 +44,8 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
+
+from Sentence_similarity.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
 STAGE_NAME = "EVALUATION"
 try:
