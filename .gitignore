@@ -167,3 +167,4 @@ logs/*
 
 trained_models/*
 
+mlruns/*

@@ -31,8 +31,12 @@ class ModelEval:
 
     def do_eval_data(self, model_path):
         model = self.get_model(model_path)
-        sentence1_embeddings = model.encode(self.sentence1, convert_to_tensor=True)
-        sentence2_embeddings = model.encode(self.sentence2, convert_to_tensor=True)
+        sentence1_embeddings = (
+            model.encode(self.sentence1, convert_to_tensor=True).cpu().numpy()
+        )
+        sentence2_embeddings = (
+            model.encode(self.sentence2, convert_to_tensor=True).cpu().numpy()
+        )
         similarity = np.array(
             [
                 cosine_similarity(i.reshape(1, -1), j.reshape(1, -1))

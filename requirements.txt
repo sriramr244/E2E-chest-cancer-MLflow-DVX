@@ -1,4 +1,4 @@
-sentence-transformers
+sentence-transformers==2.3.1
 pandas 
 gdown
 dvc
